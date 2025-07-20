@@ -27,15 +27,35 @@ Dưới đây là kế hoạch chi tiết để phân tích file dữ liệu `ma
 
 ### **Giai đoạn 3: Phân tích Khám phá Chuyên sâu (In-depth Analysis & Insights)**
 
-**Mục tiêu:** Trả lời các câu hỏi kinh doanh cụ thể và tìm kiếm "insights" để trình bày.
+**Mục tiêu:** Trả lời các câu hỏi kinh doanh cụ thể và tìm kiếm "insights" để trình bày. Dưới đây là các nhóm câu hỏi trọng tâm cần giải đáp:
 
-1.  **Tổng quan hiệu suất:** Tính các chỉ số trung bình (ROI, Conversion Rate, CPC) trên toàn bộ dữ liệu.
-2.  **Hiệu suất theo Loại chiến dịch & Kênh:** So sánh ROI, Conversion Rate giữa các `Campaign_Type` và `Channel_Used` (Gợi ý biểu đồ: Biểu đồ cột nhóm).
-3.  **Hiệu suất theo Phân khúc Khách hàng:** Phân tích hiệu suất theo `Customer_Segment`, `Age_Group`, `Sex` (Gợi ý biểu đồ: Heatmap).
-4.  **Phân tích theo Địa lý và Thời gian:**
-    *   So sánh hiệu suất giữa các `Location`.
-    *   **Quan trọng:** Vẽ biểu đồ đường để xem xu hướng của chi phí, clicks, và ROI qua các `Month`.
-5.  **Phân tích Tương quan:** Tạo một heatmap tương quan để xem các yếu tố nào ảnh hưởng mạnh nhất đến `ROI`.
+**1. Câu hỏi về Hiệu quả và Lợi nhuận (Performance & Profitability)**
+*   Loại chiến dịch (`Campaign_Type`) nào mang lại Lợi tức Đầu tư (ROI) cao nhất?
+*   Kênh quảng cáo (`Channel_Used`) nào có Tỷ lệ chuyển đổi (`Conversion_Rate`) tốt nhất?
+*   Đâu là top 5 chiến dịch có ROI cao nhất và top 5 chiến dịch có ROI thấp nhất? Đặc điểm chung của chúng là gì?
+
+**2. Câu hỏi về Chi phí và Tối ưu Ngân sách (Cost & Budget Optimization)**
+*   Kênh (`Channel_Used`) hoặc Phân khúc khách hàng (`Customer_Segment`) nào có chi phí để tạo ra một chuyển đổi (CPA) là thấp nhất?
+*   Kênh nào có chi phí cho mỗi lượt nhấp (CPC) rẻ nhất?
+*   Liệu việc chi nhiều tiền hơn (`Accquisition_Cost`) có luôn đồng nghĩa với việc thu về ROI cao hơn không?
+
+**3. Câu hỏi về Đối tượng và Phân khúc Khách hàng (Audience & Segmentation)**
+*   Phân khúc khách hàng (`Customer_Segment`, `Age_Group`, `Sex`) nào tương tác (`Engagement_Score`) và chuyển đổi tốt nhất?
+*   Chiến dịch sử dụng Ngôn ngữ (`Language`) nào, tại Thành phố (`Location`) nào đang hoạt động hiệu quả nhất?
+
+**4. Câu hỏi về Kênh và Chiến lược Nội dung (Channel & Content Strategy)**
+*   Kênh nào (Google Ads, YouTube,...) phù hợp nhất cho từng loại chiến dịch (Email, Influencer,...)?
+*   Điểm tương tác (`Engagement_Score`) cao có dẫn đến Tỷ lệ chuyển đổi cao không?
+*   Thời lượng (`Duration`) của một chiến dịch ảnh hưởng đến hiệu suất của nó như thế nào?
+
+**5. Câu hỏi về Xu hướng theo Thời gian (Trends Over Time)**
+*   Xu hướng của tổng chi phí, tổng số lượt nhấp và ROI trung bình thay đổi như thế nào qua các tháng?
+
+**Công cụ trực quan hóa gợi ý:**
+*   **Biểu đồ cột nhóm:** Để so sánh các chỉ số (ROI, Conversion Rate) theo các danh mục (`Campaign_Type`, `Channel_Used`).
+*   **Heatmap:** Để phân tích hiệu suất theo `Customer_Segment` hoặc xem ma trận tương quan.
+*   **Biểu đồ đường:** Để thể hiện xu hướng theo thời gian (`Month`).
+*   **Biểu đồ phân tán:** Để khám phá mối quan hệ giữa hai biến số (ví dụ: `Acquisition_Cost` vs `ROI`).
 
 ### **Giai đoạn 4: Xây dựng Dashboard Tương tác (Dashboard Creation)**
 

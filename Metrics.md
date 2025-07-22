@@ -10,8 +10,8 @@
      Ứng dụng: Xu hướng theo Date hoặc Location.
 
 ### 2. **Chỉ số Chuyển đổi và Hiệu quả (Conversion Metrics)**
-   - **Conversions**: Số lượng chuyển đổi ước tính (dựa trên giả định Conversion_Rate áp dụng cho Impressions).  
-     Công thức: `Conversions = Impressions * Conversion_Rate`.  
+   - **Conversions**: Số lượng chuyển đổi ước tính (dựa trên giả định Conversion_Rate áp dụng cho Clicks).  
+     Công thức: `Conversions = Clicks * Conversion_Rate`.  
      Ứng dụng: Tổng hợp theo Company hoặc Customer_Segment (speculation: nếu dataset không có cột Conversions trực tiếp, đây là cách derive).
    - **Conversion Rate Aggregate**: Trung bình tỷ lệ chuyển đổi theo nhóm.  
      Công thức: `Avg Conversion Rate = AVG(Conversion_Rate)` (group by Target_Audience hoặc Language).  

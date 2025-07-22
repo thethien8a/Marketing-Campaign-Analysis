@@ -7,7 +7,7 @@ Dataset về Hiệu suất Chiến dịch Marketing cung cấp những thông ti
 1. **Company**: Công ty chịu trách nhiệm thực hiện chiến dịch, bao gồm các thương hiệu giả định.
 2. **Campaign_Type**: Loại chiến dịch được sử dụng, bao gồm email, mạng xã hội, influencer, quảng cáo hiển thị, hoặc tìm kiếm.
 4. **Duration**: Thời gian diễn ra chiến dịch, tính bằng ngày.
-5. **Channels_Used**: Các kênh được sử dụng để quảng bá chiến dịch, bao gồm email, nền tảng mạng xã hội, YouTube, website, hoặc Google Ads.
+5. **Channel_Used**: Các kênh được sử dụng để quảng bá chiến dịch, bao gồm email, nền tảng mạng xã hội, YouTube, website, hoặc Google Ads.
 6. **Conversion_Rate**: Tỷ lệ chuyển đổi từ lượt xem hoặc lượt tiếp cận thành hành động mong muốn, thể hiện hiệu quả của chiến dịch.
 7. **Acquisition_Cost**: Chi phí mà công ty phải bỏ ra để thu hút khách hàng, được trình bày dưới dạng giá trị tiền tệ.
 8. **ROI**: Lợi tức đầu tư, thể hiện mức độ lợi nhuận và thành công của chiến dịch.
@@ -18,8 +18,8 @@ Dataset về Hiệu suất Chiến dịch Marketing cung cấp những thông ti
 13. **Engagement_Score**: Điểm số từ 1 đến 10 đo lường mức độ tương tác mà chiến dịch tạo ra.
 14. **Customer_Segment**: Phân khúc khách hàng hoặc nhóm đối tượng mà chiến dịch hướng đến, ví dụ: người yêu công nghệ, tín đồ thời trang, người quan tâm đến sức khỏe, người yêu ẩm thực, hoặc người thích hoạt động ngoài trời.
 15. **Date**: Ngày diễn ra chiến dịch, cung cấp góc nhìn theo thời gian để phân tích xu hướng và mô hình.
-16. **Sex**: Giới tính của đối tượng ta tiếp cận chiến dịch
-17. **Age_Group**: Nhóm tuổi đối tượng ta tiếp cận
+16. **Sex**: Giới tính của đối tượng ta tiếp cận chiến dịch (Dữ liệu có sau khi tiền xử lý)
+17. **Age_Group**: Nhóm tuổi đối tượng ta tiếp cận (Dữ liệu có sau khi tiền xử lý)
 
 ## Phạm vi ứng dụng:
 Bằng cách sử dụng dataset này, các nhà tiếp thị và nhà phân tích dữ liệu có thể khám phá những thông tin giá trị về hiệu suất chiến dịch, sở thích của đối tượng mục tiêu, hiệu quả của kênh, và ROI. Dataset này là một nguồn tài nguyên quý giá cho nghiên cứu thị trường, tối ưu hóa chiến dịch, và ra quyết định dựa trên dữ liệu, giúp doanh nghiệp cải thiện chiến lược marketing và thúc đẩy tăng trưởng có mục
@@ -45,29 +45,53 @@ Bằng cách sử dụng dataset này, các nhà tiếp thị và nhà phân tí
   - **Theo địa điểm:** Dùng **heatmap** để phân tích hiệu quả theo `Location`.
   - **Theo độ tuổi:** Dùng **heatmap** để phân tích hiệu quả theo `Age_Group`.
 - ✅ **Phân tích Hiệu quả vs. Quy mô:** Dùng **scatter plot** để đánh giá mối quan hệ giữa `ROI` và `Acquisition_Cost`.
+- ✅ **Phân tích Hiệu quả vs. Thời gian:** Dùng **scatter plot** để đánh giá mối quan hệ giữa `ROI` và `Duration (days)`.
 - ✅ **Phân tích Xu hướng ROI:** Dùng **line plot** để theo dõi ROI theo thời gian.
 - ➡️ **Kết luận chung chủ đề:** Các phân tích trên đều chỉ ra dữ liệu có khả năng cao là nhân tạo do ROI không có sự khác biệt ý nghĩa giữa các chiều phân tích.
 
 #### 2.2 Chủ đề: Tối ưu hóa Chi phí & Nguồn lực (Cost & Resource Optimization)
-- ✅ **Phân tích Phân bổ Nguồn lực:**
-  - **Theo số lượng:** Phân tích số lượng chiến dịch theo `Campaign_Type` bằng **countplot**.
-  - **Theo chi phí:** Phân tích tổng và trung bình chi phí theo `Campaign_Type`.
-  - **Theo thời gian:** Phân tích thời gian chạy chiến dịch trung bình theo `Campaign_Type`.
-- ➡️ **Kết luận chung chủ đề:** Công ty đang áp dụng chiến lược "an toàn", phân bổ nguồn lực (chi phí, thời gian, số lượng) rất đồng đều giữa các loại chiến dịch.
+- ✅ Phân tích Phân bổ Nguồn lực:
+  - **Theo số lượng**: Phân tích số lượng chiến dịch theo Campaign_Type bằng countplot.
+  - **Theo chi phí**: Phân tích tổng và trung bình chi phí theo Campaign_Type.
+  - **Theo thời gian**: Phân tích thời gian chạy chiến dịch trung bình theo Campaign_Type.
+- ✅ **Phân tích Hiệu quả Chi phí (Cost Efficiency Analysis):**
+  - **Cost per Acquisition (CPA) theo kênh:** Dùng **biểu đồ cột (bar chart)** để so sánh chi phí acquire 1 khách hàng giữa các `Channel_Used`.
+  - **Cost per Acquisition (CPA) theo loại chiến dịch:** Dùng **biểu đồ cột (bar chart)** để so sánh hiệu quả chi phí giữa các `Campaign_Type`.
+  - **Mối quan hệ CPA vs ROI:** Dùng **scatter plot** để xác định kênh nào vừa có CPA thấp vừa có ROI cao.
+  - **Heatmap CPA đa chiều:** Dùng **heatmap** để phân tích CPA theo sự kết hợp `Channel_Used` × `Campaign_Type`.
+- ⏳ **Return on Ad Spend (ROAS)** để đánh giá tỷ lệ lợi nhuận trên chi phí quảng cáo.
+- ⏳ **Chi phí/Conversion** để so sánh hiệu quả chuyển đổi giữa các Campaign_Type.
+- ⏳ **Phân tích Phân bổ Nguồn lực Tối ưu (Resource Allocation Analysis):**
+  - **Budget distribution** tối ưu dựa trên performance thực tế.
+  - **Duration vs Cost efficiency** để xác định thời gian chiến dịch hiệu quả nhất.
+  - **Seasonality impact** on cost efficiency theo thời gian.
+- ⏳ **Tối ưu Danh mục (Portfolio Optimization):**
+  - **Pareto Analysis (80/20 rule)** để tìm ra kênh đóng góp chính.
+  - **Risk-Return Analysis** cho từng kênh dựa trên volatility và ROI.
+  - **Optimal budget mix recommendation** dựa trên toàn bộ phân tích.
 
-#### 2.3 Chủ đề: Tối ưu hóa Tương tác (Engagement Optimization)
-- ✅ **Phân tích Tỷ lệ chuyển đổi (Conversion Rate):**
-  - **Theo Loại chiến dịch:** So sánh `Conversion_Rate` trung bình theo `Campaign_Type`. Kết quả cho thấy tỷ lệ gần như không đổi, củng cố giả thuyết về dữ liệu nhân tạo.
-  - **Theo Loại chiến dịch & Kênh:** Dùng **biểu đồ cột nhóm (grouped bar chart)** để tìm ra `Channel_Used` hiệu quả nhất cho từng `Campaign_Type`.
-- ⏳ **Phân tích Tỷ lệ Click (CTR):**
-  - _Mục tiêu:_ Tính và so sánh `CTR = Clicks / Impressions` theo các chiều (Kênh, Loại chiến dịch) để xem quảng cáo nào hấp dẫn người dùng nhất.
-- ⏳ **Phân tích Chi phí mỗi Click (CPC):**
-  - _Mục tiêu:_ Tính và so sánh `CPC = Acquisition_Cost / Clicks` để tìm ra kênh mang lại traffic với chi phí hiệu quả nhất.
-- ⏳ **Phân tích Mối quan hệ giữa Tương tác và Lợi nhuận:**
-  - _Mục tiêu:_ Dùng scatter plot để xem xét liệu `Engagement_Score` cao có dẫn đến `ROI` hoặc `Conversion_Rate` cao không.
-- ➡️ **Kết luận chung chủ đề:** (Chưa có)
+### 2.3 Chủ đề: Tối ưu hóa Tương tác (Engagement Optimization)
+- ✅ **Phân tích Tỷ lệ Click (CTR):**
+  - **Theo loại chiến dịch:** Dùng **biểu đồ cột (bar chart)** để so sánh CTR trung bình của các `Campaign_Type`.
+  - **Theo sự kết hợp Kênh & Loại chiến dịch:** Dùng **biểu đồ cột nhóm (grouped bar chart)** để so sánh CTR của từng `Channel_Used` trong các `Campaign_Type` cụ thể.
+- ✅ **Phân tích Chi phí mỗi Click (CPC):**
+  - **Theo kênh quảng cáo:** Dùng **biểu đồ cột (bar chart)** để so sánh CPC trung bình của các `Channel_Used`, nhằm tìm ra kênh hiệu quả nhất về chi phí.
+- ✅ **Phân tích Mối quan hệ giữa Tương tác và Kết quả kinh doanh:**
+  - **Dùng scatter plot với đường hồi quy** để kiểm tra xem `Engagement_Score` có tương quan với `ROI` và `Conversion_Rate` hay không.
+- ✅ **Phân tích Tứ phân vị Chiến lược (Quadrant Analysis):**
+  - **CTR vs CPC:** Dùng **scatter plot với đường chia median** để phân loại các kênh thành 4 nhóm chiến lược: Stars, Gold Mines, Question Marks, và Dogs.
+- ✅ **Phân tích Xu hướng theo Thời gian (Trend Analysis):**
+  - **CTR & CPC theo tháng:** Dùng **line plot** để theo dõi xu hướng tăng/giảm của từng kênh theo thời gian, nhằm đưa ra quyết định timing cho việc điều chỉnh ngân sách.
 
-### 3. Kỹ thuật Visualization đã áp dụng
+- ✅ **Kết luận chung chủ đề:**
+  - **Website** là kênh STAR (CTR cao, CPC thấp) → **Tăng cường đầu tư**.
+  - **YouTube** là kênh GOLD MINE (CTR cao, CPC cao) → **Tối ưu chi phí**.
+  - **Email & Facebook** là kênh QUESTION MARKS (CTR thấp, CPC thấp) → **Thử nghiệm nội dung mới**.
+  - **Google Ads & Instagram** là kênh DOGS (CTR thấp, CPC cao) → **Cân nhắc cắt giảm**.
+  - **Engagement_Score không tương quan** với các chỉ số kinh doanh → Cần định nghĩa lại "tương tác" có ý nghĩa.
+  - **Xu hướng thời gian** giúp xác định timing tối ưu cho việc điều chỉnh ngân sách dựa trên performance tăng/giảm của từng kênh.
+
+## 3. Các kỹ thuật trực quan hóa đã sử dụng
 - ✅ Sử dụng `sns.despine()` để làm sạch biểu đồ (loại bỏ đường viền trên và phải)
 - ✅ Tùy chỉnh tiêu đề, nhãn và annotations cho các biểu đồ
 - ✅ Ẩn trục không cần thiết để tập trung vào dữ liệu
@@ -94,6 +118,5 @@ Bằng cách sử dụng dataset này, các nhà tiếp thị và nhà phân tí
 - ⏳ Tổng hợp insights và đề xuất hành động
 
 ### 7. Files đã tạo
-- ✅ `Plan.md` - Kế hoạch chi tiết 5 giai đoạn
-- ✅ `Measures.md` - Danh sách các measures/KPIs marketing
+- ✅ `Metrics.md` - Danh sách các metrics/KPIs marketing
 - ✅ `Data_Analysis.ipynb` - Notebook chính chứa code và phân tích

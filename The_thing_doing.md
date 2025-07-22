@@ -6,7 +6,6 @@ Dataset về Hiệu suất Chiến dịch Marketing cung cấp những thông ti
 ## Các cột trong Dataset:
 1. **Company**: Công ty chịu trách nhiệm thực hiện chiến dịch, bao gồm các thương hiệu giả định.
 2. **Campaign_Type**: Loại chiến dịch được sử dụng, bao gồm email, mạng xã hội, influencer, quảng cáo hiển thị, hoặc tìm kiếm.
-3. **Target_Audience**: Phân khúc đối tượng mục tiêu của chiến dịch, ví dụ: phụ nữ từ 25-34 tuổi, nam giới từ 18-24 tuổi, hoặc tất cả nhóm tuổi.
 4. **Duration**: Thời gian diễn ra chiến dịch, tính bằng ngày.
 5. **Channels_Used**: Các kênh được sử dụng để quảng bá chiến dịch, bao gồm email, nền tảng mạng xã hội, YouTube, website, hoặc Google Ads.
 6. **Conversion_Rate**: Tỷ lệ chuyển đổi từ lượt xem hoặc lượt tiếp cận thành hành động mong muốn, thể hiện hiệu quả của chiến dịch.
@@ -19,6 +18,8 @@ Dataset về Hiệu suất Chiến dịch Marketing cung cấp những thông ti
 13. **Engagement_Score**: Điểm số từ 1 đến 10 đo lường mức độ tương tác mà chiến dịch tạo ra.
 14. **Customer_Segment**: Phân khúc khách hàng hoặc nhóm đối tượng mà chiến dịch hướng đến, ví dụ: người yêu công nghệ, tín đồ thời trang, người quan tâm đến sức khỏe, người yêu ẩm thực, hoặc người thích hoạt động ngoài trời.
 15. **Date**: Ngày diễn ra chiến dịch, cung cấp góc nhìn theo thời gian để phân tích xu hướng và mô hình.
+16. **Sex**: Giới tính của đối tượng ta tiếp cận chiến dịch
+17. **Age_Group**: Nhóm tuổi đối tượng ta tiếp cận
 
 ## Phạm vi ứng dụng:
 Bằng cách sử dụng dataset này, các nhà tiếp thị và nhà phân tích dữ liệu có thể khám phá những thông tin giá trị về hiệu suất chiến dịch, sở thích của đối tượng mục tiêu, hiệu quả của kênh, và ROI. Dataset này là một nguồn tài nguyên quý giá cho nghiên cứu thị trường, tối ưu hóa chiến dịch, và ra quyết định dựa trên dữ liệu, giúp doanh nghiệp cải thiện chiến lược marketing và thúc đẩy tăng trưởng có mục
@@ -32,51 +33,39 @@ Bằng cách sử dụng dataset này, các nhà tiếp thị và nhà phân tí
 - ✅ Sử dụng regex để tách thông tin từ cột `Target_Audience` thành `Sex` và `Age_Group`
 - ✅ Tạo DataFrame mới (`new_df`) với các cột đã được làm sạch
 
-### 2. EDA (Exploratory Data Analysis) - Đã hoàn thành
+### 2. Phân tích Theo Chủ đề Kinh doanh (Business-Driven Analysis)
 
-#### 2.1 Phân tích Phân bổ Chiến dịch (Campaign Distribution)
-- ✅ **Phân bổ số lượng chiến dịch theo loại (`Campaign_Type`):**
-  - Tạo biểu đồ countplot để xem phân bổ các loại chiến dịch
-  - Kết luận: Nguồn lực phân bổ ở các kênh khá đều nhau, công ty đang chơi "an toàn"
+#### 2.1 Chủ đề: Tối ưu hóa Lợi nhuận (Profitability Optimization)
+- ✅ **Phân tích ROI đa chiều:**
+  - **Theo kênh:** Dùng **biểu đồ cột (bar chart)** để so sánh ROI trung bình của các `Channel_Used`.
+  - **Theo loại chiến dịch:** Phân tích phân phối ROI bằng **violin plot**.
+  - **Theo sự kết hợp Kênh & Loại chiến dịch:** Dùng **heatmap** để tìm sự kết hợp hiệu quả.
+  - **Theo sự kết hợp Phân khúc khách hàng & Kênh:** Dùng **heatmap** để phân tích hiệu quả theo `Customer_Segment` và `Channel_Used`.
+  - **Theo phân khúc khách hàng:** Dùng **heatmap** để phân tích hiệu quả theo `Customer_Segment`.
+  - **Theo địa điểm:** Dùng **heatmap** để phân tích hiệu quả theo `Location`.
+  - **Theo độ tuổi:** Dùng **heatmap** để phân tích hiệu quả theo `Age_Group`.
+- ✅ **Phân tích Hiệu quả vs. Quy mô:** Dùng **scatter plot** để đánh giá mối quan hệ giữa `ROI` và `Acquisition_Cost`.
+- ✅ **Phân tích Xu hướng ROI:** Dùng **line plot** để theo dõi ROI theo thời gian.
+- ➡️ **Kết luận chung chủ đề:** Các phân tích trên đều chỉ ra dữ liệu có khả năng cao là nhân tạo do ROI không có sự khác biệt ý nghĩa giữa các chiều phân tích.
 
-#### 2.2 Phân tích Chi phí (Cost Analysis)
-- ✅ **Tổng chi phí theo loại chiến dịch:**
-  - Vẽ biểu đồ cột hiển thị tổng chi phí theo `Campaign_Type`
-  - Kết luận: Tổng chi phí tỷ lệ thuận với số lượng chiến dịch
+#### 2.2 Chủ đề: Tối ưu hóa Chi phí & Nguồn lực (Cost & Resource Optimization)
+- ✅ **Phân tích Phân bổ Nguồn lực:**
+  - **Theo số lượng:** Phân tích số lượng chiến dịch theo `Campaign_Type` bằng **countplot**.
+  - **Theo chi phí:** Phân tích tổng và trung bình chi phí theo `Campaign_Type`.
+  - **Theo thời gian:** Phân tích thời gian chạy chiến dịch trung bình theo `Campaign_Type`.
+- ➡️ **Kết luận chung chủ đề:** Công ty đang áp dụng chiến lược "an toàn", phân bổ nguồn lực (chi phí, thời gian, số lượng) rất đồng đều giữa các loại chiến dịch.
 
-- ✅ **Chi phí trung bình cho mỗi chiến dịch:**
-  - Tính và hiển thị chi phí trung bình theo từng loại chiến dịch
-  - Kết luận: Chi phí trung bình cho mỗi chiến dịch gần như bằng nhau, công ty chưa dám đầu tư mạnh vào kênh cụ thể
-
-#### 2.3 Phân tích Thời gian Chiến dịch (Duration Analysis)
-- ✅ **Thời gian diễn ra trung bình cho mỗi chiến dịch:**
-  - Tính và visualize thời gian trung bình (`Duration (days)`) theo `Campaign_Type`
-  - Kết luận: Hầu như không có sự khác biệt về thời gian giữa các loại chiến dịch
-
-#### 2.4 Phân tích Hiệu suất (Performance Analysis)
-- ✅ **ROI trung bình theo kênh quảng cáo:**
-  - Tính ROI trung bình theo `Channel_Used` và tạo biểu đồ cột.
-- ✅ **Phân phối ROI theo loại chiến dịch:**
-  - Sử dụng **violin plot** để xem xét sự phân tán của ROI theo `Campaign_Type`.
-  - Kết luận: Phân phối ROI của tất cả các loại chiến dịch gần như giống hệt nhau, cho thấy dữ liệu có thể là nhân tạo (synthetic data).
-- ✅ **Phân tích ROI hai chiều (Loại chiến dịch vs. Kênh):**
-  - Sử dụng **heatmap** để tìm ra sự kết hợp hiệu quả nhất.
-  - Kết luận: ROI chỉ có sự khác biệt rất nhỏ (từ 4.9 đến 5.1), củng cố thêm nghi ngờ về tính xác thực của dữ liệu.
-- ✅ **Phân tích ROI vs. Chi phí (Cost vs. ROI):**
-  - Sử dụng **scatter plot** để đánh giá mối quan hệ giữa chi phí, ROI, loại chiến dịch và lượt hiển thị.
-  - Kết luận: Biểu đồ hỗn loạn như một "đám mây" dữ liệu ngẫu nhiên, không có xu hướng hay cụm nào rõ ràng. Đây là bằng chứng mạnh mẽ nhất xác nhận dữ liệu được tạo ra một cách nhân tạo.
-- ✅ **Phân tích Hiệu quả Chiến dịch theo Phân khúc Khách hàng:**
-  - Sử dụng **heatmap** để so sánh hiệu quả ROI của các `Campaign_Type` trên từng `Customer_Segment`.
-  - Kết luận: Biểu đồ tiếp tục cho thấy sự thiếu khác biệt đáng kể về ROI (chỉ dao động nhỏ từ 4.9 đến 5.1), củng cố thêm bằng chứng về dữ liệu nhân tạo. Các "điểm nóng" và "điểm lạnh" không thực sự nổi bật.
-- ✅ **Phân tích Hiệu quả Chiến dịch theo Địa điểm:**
-  - Sử dụng **heatmap** thứ hai để so sánh hiệu quả ROI của các `Campaign_Type` tại từng `Location`.
-  - Kết luận: Tương tự các phân tích trước, kết quả gần như đồng nhất và không cho thấy sự khác biệt có ý nghĩa về mặt chiến lược giữa các địa điểm, tiếp tục xác nhận bản chất của dữ liệu.
-- ✅ **Phân tích Hiệu quả Chiến dịch theo Độ tuổi:**
-  - Sử dụng **heatmap** thứ hai để so sánh hiệu quả ROI của các `Campaign_Type` tại từng `Age_Group`.
-  - Kết luận: Tương tự các phân tích trước, kết quả gần như đồng nhất và không cho thấy sự khác biệt có ý nghĩa về mặt chiến lược giữa độ tuổi, tiếp tục xác nhận bản chất của dữ liệu.
-- ✅ **Phân tích Xu hướng ROI theo Thời gian:**
-  - Sử dụng **biểu đồ đường (line plot)** để theo dõi ROI trung bình hàng tháng, ngày của các `Campaign_Type`.
-  - Kết luận: Các đường biểu diễn biến động một cách ngẫu nhiên như "spaghetti", không cho thấy bất kỳ tính mùa vụ hay xu hướng dài hạn nào, củng cố thêm bằng chứng về dữ liệu nhân tạo.
+#### 2.3 Chủ đề: Tối ưu hóa Tương tác (Engagement Optimization)
+- ✅ **Phân tích Tỷ lệ chuyển đổi (Conversion Rate):**
+  - **Theo Loại chiến dịch:** So sánh `Conversion_Rate` trung bình theo `Campaign_Type`. Kết quả cho thấy tỷ lệ gần như không đổi, củng cố giả thuyết về dữ liệu nhân tạo.
+  - **Theo Loại chiến dịch & Kênh:** Dùng **biểu đồ cột nhóm (grouped bar chart)** để tìm ra `Channel_Used` hiệu quả nhất cho từng `Campaign_Type`.
+- ⏳ **Phân tích Tỷ lệ Click (CTR):**
+  - _Mục tiêu:_ Tính và so sánh `CTR = Clicks / Impressions` theo các chiều (Kênh, Loại chiến dịch) để xem quảng cáo nào hấp dẫn người dùng nhất.
+- ⏳ **Phân tích Chi phí mỗi Click (CPC):**
+  - _Mục tiêu:_ Tính và so sánh `CPC = Acquisition_Cost / Clicks` để tìm ra kênh mang lại traffic với chi phí hiệu quả nhất.
+- ⏳ **Phân tích Mối quan hệ giữa Tương tác và Lợi nhuận:**
+  - _Mục tiêu:_ Dùng scatter plot để xem xét liệu `Engagement_Score` cao có dẫn đến `ROI` hoặc `Conversion_Rate` cao không.
+- ➡️ **Kết luận chung chủ đề:** (Chưa có)
 
 ### 3. Kỹ thuật Visualization đã áp dụng
 - ✅ Sử dụng `sns.despine()` để làm sạch biểu đồ (loại bỏ đường viền trên và phải)
@@ -88,20 +77,19 @@ Bằng cách sử dụng dataset này, các nhà tiếp thị và nhà phân tí
 - ✅ Sử dụng **Heatmap** để phân tích mối quan hệ hai chiều.
 - ✅ Sử dụng **Scatter Plot** để trực quan hóa mối quan hệ giữa các biến số.
 - ✅ Sử dụng **Line Plot** để phân tích xu hướng theo thời gian.
+- ✅ Sử dụng **Biểu đồ cột nhóm (Grouped Bar Chart)** để so sánh các danh mục phụ trong một danh mục chính.
+- ✅ Sử dụng **Biểu đồ cột (Bar Chart)** để so sánh giá trị giữa các danh mục.
 
 ### 4. Insights chính đã phát hiện
-1. **Chiến lược Conservative:** Công ty đang phân bổ đều tài nguyên, chưa tập trung vào kênh cụ thể.
-2. **Chi phí Standardized:** Chi phí trung bình cho mỗi chiến dịch tương đương nhau.
-3. **Thời gian Consistent:** Không có sự khác biệt đáng kể về thời gian chạy chiến dịch.
-4. **Dữ liệu được xác nhận là nhân tạo (Synthetic Data):** Tất cả các phân tích sâu về ROI (violin plot, heatmap, và đặc biệt là scatter plot) đều cho thấy sự phân bố ngẫu nhiên và không có mối quan hệ có ý nghĩa giữa các biến. Đây là bằng chứng vững chắc rằng dữ liệu được tạo ra một cách nhân tạo.
+1. **Chiến lược Phân bổ An toàn:** Công ty đang phân bổ đều tài nguyên (số lượng, chi phí, thời gian), chưa tập trung vào một mũi nhọn cụ thể.
+2. **Dữ liệu được xác nhận là nhân tạo (Synthetic Data):** Tất cả các phân tích sâu về ROI và Tỷ lệ chuyển đổi đều cho thấy sự phân bố ngẫu nhiên và không có mối quan hệ có ý nghĩa giữa các biến. Đây là bằng chứng vững chắc rằng dữ liệu được tạo ra một cách nhân tạo.
 
 ### 5. Công việc đang thực hiện
-- ✅ **Hoàn thành giai đoạn EDA:** Đã hoàn thành các phân tích trực quan chính và xác nhận được bản chất của bộ dữ liệu.
-- 🔄 **Chuẩn bị tổng kết:** Đang trong quá trình tổng hợp các phát hiện về chất lượng dữ liệu và chuẩn bị các bước tiếp theo.
+- ✅ **Hoàn thành giai đoạn phân tích khám phá (EDA):** Đã hoàn thành các phân tích trực quan chính và xác nhận được bản chất của bộ dữ liệu.
+- 🔄 **Chuyển sang giai đoạn phân tích Tương tác:** Đang trong quá trình thực hiện các phân tích trong Chủ đề 3.
 
-### 6. Kế hoạch tiếp theo (theo Plan.md)
-- ⏳ Hoàn thành phân tích tương quan
-- ⏳ Phân tích theo các chiều khác (ví dụ: `Language`)
+### 6. Kế hoạch tiếp theo
+- ✅ **Phân tích Tối ưu hóa Tương tác (Engagement Optimization):** (Đang thực hiện)
 - ⏳ Xây dựng dashboard tương tác với Plotly/Dash
 - ⏳ Tổng hợp insights và đề xuất hành động
 

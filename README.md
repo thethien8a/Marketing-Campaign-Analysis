@@ -1,0 +1,1 @@
+Ở đây lưu lại các project phân tích chiến dịch marketing với dữ liệu được lấy trên kaggle và lấy từ khóa học của Mastering Data Analytics

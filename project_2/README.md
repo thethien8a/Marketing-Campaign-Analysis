@@ -21,13 +21,19 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 
 ### Dashboard 1: Tổng quan Hiệu suất (Performance Overview)
 *   **Mục tiêu:** Cung cấp cái nhìn 360 độ về sức khỏe của tất cả các chiến dịch.
+*   **Đối tượng sử dụng:** Ban lãnh đạo (C-Level), Trưởng phòng Marketing.
 *   **Câu hỏi trả lời:** "Tình hình marketing tổng thể đang như thế nào?"
+*   **Những thứ đối tượng sử dụng có thể quan tâm:**
+    -   **Hiệu quả tài chính:** Lợi nhuận ròng (Doanh thu - Chi phí) và ROAS (Return on Ad Spend) là bao nhiêu? Mỗi đồng chi ra mang về bao nhiêu đồng doanh thu?
+    -   **Xu hướng tăng trưởng:** Tình hình doanh thu, chi phí và hiệu quả (ROAS) đang tốt lên hay xấu đi theo thời gian?
+    -   **Cơ hội & Rủi ro:** Có kênh nào đang chiếm tỷ trọng quá lớn không? Đâu là cơ hội để tăng trưởng?
 *   **Các chỉ số chính (KPIs):**
     -   Tổng Doanh thu, Tổng Chi phí, ROAS trung bình
     -   Tổng Chuyển đổi, CPA trung bình
 
 ### Dashboard 2: Phân tích Kênh & Nội dung (Channel & Content Deep Dive)
 *   **Mục tiêu:** So sánh hiệu quả giữa các kênh và loại nội dung để tối ưu hóa ngân sách.
+*   **Đối tượng sử dụng:** Đội ngũ Marketing (Marketing Team), Chuyên viên quảng cáo (Ad Specialists).
 *   **Câu hỏi trả lời:** "Nên đầu tư tiền vào đâu và dạng nội dung nào?"
 *   **Các chỉ số chính (KPIs):**
     -   ROAS, CPA, CTR theo Nền tảng
@@ -35,6 +41,7 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 
 ### Dashboard 3: Phân tích Chân dung Khách hàng (Customer Persona Analysis)
 *   **Mục tiêu:** Hiểu rõ khách hàng mục tiêu là ai và họ ở đâu.
+*   **Đối tượng sử dụng:** Trưởng phòng Marketing, Đội ngũ Sáng tạo Nội dung (Content Team), Chuyên viên quảng cáo.
 *   **Câu hỏi trả lời:** "Ai là khách hàng giá trị nhất của chúng ta?"
 *   **Các chỉ số chính (KPIs):**
     -   Doanh thu, CPA theo Nhóm tuổi
@@ -43,6 +50,7 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 
 ### Dashboard 4: Phân tích Ngân sách & Thời gian (Budget & Duration Analysis)
 *   **Mục tiêu:** Đánh giá mối quan hệ giữa chi tiêu, thời gian và hiệu quả.
+*   **Đối tượng sử dụng:** Trưởng phòng Marketing, Chuyên viên Lập kế hoạch (Media Planners).
 *   **Câu hỏi trả lời:** "Chi tiêu bao nhiêu và trong bao lâu là tối ưu?"
 *   **Các chỉ số chính (KPIs):**
     -   Tương quan giữa Ngân sách và Doanh thu

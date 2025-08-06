@@ -31,6 +31,15 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
     -   Tổng Doanh thu, Tổng Chi phí, ROAS trung bình
     -   Tổng Chuyển đổi, CPA trung bình
 
+**Biểu đồ đề xuất (impact cao):**
+- KPI Cards: Total Revenue, Total Spend, Avg ROAS, Total Conversions, Avg CPA (+ % thay đổi MoM/7 ngày).
+- Line: Revenue vs Spend theo thời gian; tùy chọn thêm ROAS trên trục phụ; có rolling mean 7/30 ngày.
+- Bar horizontal (sorted): ROAS theo Platform kèm overlay/annotation Total Spend để tránh bẫy ROAS thấp mẫu.
+- Pareto/stacked bar: Đóng góp %Revenue và %Spend theo Platform (nhận diện 80/20 và rủi ro tập trung).
+- Watchlist (bảng nhỏ): Top campaign/platform có ROAS giảm > X% trong 14/30 ngày hoặc CPA > ngưỡng.
+
+---
+
 ### Dashboard 2: Phân tích Kênh & Nội dung (Channel & Content Deep Dive)
 *   **Mục tiêu:** So sánh hiệu quả giữa các kênh và loại nội dung để tối ưu hóa ngân sách.
 *   **Đối tượng sử dụng:** Đội ngũ Marketing (Marketing Team), Chuyên viên quảng cáo (Ad Specialists).
@@ -38,6 +47,15 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 *   **Các chỉ số chính (KPIs):**
     -   ROAS, CPA, CTR theo Nền tảng
     -   ROAS, CPA, CTR theo Loại nội dung
+
+**Biểu đồ đề xuất:**
+- Bar/boxplot: ROAS, CPA, CTR theo Platform (so sánh phân phối và median).
+- Bar/boxplot: ROAS, CPA, CTR theo Content_Type.
+- Scatter (bubble): x = Spend, y = ROAS, size = Revenue, color = Platform (định vị kênh hiệu quả).
+- Pareto theo Platform/Content_Type: %Revenue đóng góp top-N.
+- Table: Top-N creatives/campaign theo ROAS/Revenue với số liệu hỗ trợ (Spend, Conversions).
+
+---
 
 ### Dashboard 3: Phân tích Chân dung Khách hàng (Customer Persona Analysis)
 *   **Mục tiêu:** Hiểu rõ khách hàng mục tiêu là ai và họ ở đâu.
@@ -48,6 +66,14 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
     -   Doanh thu, CPA theo Giới tính
     -   Doanh thu, CPA theo Khu vực
 
+**Biểu đồ đề xuất:**
+- Heatmap: ROAS/CPA theo Age_Group x Gender (nhận diện persona hiệu quả).
+- Bar: Revenue và CPA theo Region (2 trục hoặc 2 chart song song).
+- Stacked bar: Revenue theo Age_Group trong từng Platform (interaction effect nếu cần).
+- Map/choropleth: Revenue/ROAS theo Region (nếu có mapping địa lý).
+
+---
+
 ### Dashboard 4: Phân tích Ngân sách & Thời gian (Budget & Duration Analysis)
 *   **Mục tiêu:** Đánh giá mối quan hệ giữa chi tiêu, thời gian và hiệu quả.
 *   **Đối tượng sử dụng:** Trưởng phòng Marketing, Chuyên viên Lập kế hoạch (Media Planners).
@@ -56,8 +82,15 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
     -   Tương quan giữa Ngân sách và Doanh thu
     -   Tương quan giữa Thời gian chạy và ROAS
 
-## 3. Công cụ sử dụng (dự kiến)
-- **Ngôn ngữ:** Python (Pandas, Matplotlib, Seaborn, ...)
-- **Công cụ Dashboard:** Streamlit
-- **Deployment:** Streamlit Sharing
-- **Công cụ phân tích:** Jupyter Notebook
+**Biểu đồ đề xuất:**
+- Scatter: Budget/Spend vs Revenue (size = Conversions, color = ROAS) + đường fit (regression) để thấy trend.
+- Line/scatter: Duration (ngày chạy) vs ROAS; thêm LOESS/regression để quan sát hiệu ứng thời lượng.
+- Marginal/joint plot: phân phối Budget và Revenue kèm tương quan Pearson/Spearman.
+- Bubble timeline (optional): theo Campaign_ID, kích thước theo Spend, màu theo ROAS.
+
+---
+
+### Gợi ý triển khai tương tác (áp dụng cho tất cả dashboards)
+- Filters: Date range, Platform, Region, Content_Type, Budget/Spend range.
+- Toàn bộ biểu đồ phản ứng theo filter; hỗ trợ tải CSV/Excel dữ liệu đã lọc.
+- Chú ý chuẩn hóa công thức: ROAS = Revenue / Spend; CPA = Spend / Conversions.

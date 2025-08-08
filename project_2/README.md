@@ -94,3 +94,32 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 - Filters: Date range, Platform, Region, Content_Type, Budget/Spend range.
 - Toàn bộ biểu đồ phản ứng theo filter; hỗ trợ tải CSV/Excel dữ liệu đã lọc.
 - Chú ý chuẩn hóa công thức: ROAS = Revenue / Spend; CPA = Spend / Conversions.
+
+---
+
+## 3. Lược đồ dữ liệu (Data Schema)
+
+- Nguồn: `Sample_data.csv`
+- Lưu ý: Cột đầu tiên trong file là chỉ số dòng (không có tên). Khi đọc bằng pandas có thể bỏ bằng `index_col=0`.
+
+### Danh sách trường dữ liệu
+- **Index (không tên)** — integer: Chỉ số dòng; có thể bỏ qua khi phân tích.
+- **Campaign_ID** — string: Mã chiến dịch.
+- **Budget** — float: Ngân sách dự kiến cho chiến dịch.
+- **Clicks** — integer: Số lượt nhấp.
+- **CTR** — float: Tỷ lệ nhấp = Clicks / Impressions.
+- **CPC** — float: Chi phí cho mỗi nhấp = Spend / Clicks.
+- **Conversions** — integer: Số chuyển đổi (hành động mục tiêu đạt được).
+- **CPA** — float: Chi phí cho mỗi chuyển đổi = Spend / Conversions.
+- **Conversion_Rate** — float: Tỷ lệ chuyển đổi = Conversions / Clicks.
+- **Duration** — integer: Số ngày chạy chiến dịch.
+- **Platform** — category/string: Nền tảng quảng cáo (Facebook, Google, YouTube, Instagram, LinkedIn,...).
+- **Content_Type** — category/string: Loại nội dung (Text, Image, Video, Carousel,...).
+- **Target_Age** — category/string: Nhóm tuổi mục tiêu (ví dụ: 18-24, 25-34, 35-44, 55+,...).
+- **Target_Gender** — category/string: Giới tính mục tiêu (Male, Female, Other).
+- **Region** — category/string: Khu vực địa lý (North America, Europe, Asia, Africa, South America,...).
+- **Revenue** — float: Doanh thu tạo ra từ chiến dịch.
+- **Spend** — float: Chi phí thực tế đã chi.
+- **ROAS** — float: Hiệu quả chi tiêu quảng cáo = Revenue / Spend.
+- **Date** — date (YYYY-MM-DD): Ngày ghi nhận dữ liệu/chạy chiến dịch.
+- **Impressions** — integer: Số lần hiển thị.

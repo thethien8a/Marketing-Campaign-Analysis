@@ -36,7 +36,7 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 - Line: Revenue vs Spend theo thời gian; tùy chọn thêm ROAS trên trục phụ; có rolling mean 7/30 ngày.
 - Bar horizontal (sorted): ROAS theo Platform kèm overlay/annotation Total Spend để tránh bẫy ROAS thấp mẫu.
 - Pareto/stacked bar: Đóng góp %Revenue và %Spend theo Platform (nhận diện 80/20 và rủi ro tập trung).
-- Watchlist (bảng nhỏ): Top campaign/platform có ROAS giảm > X% trong 14/30 ngày hoặc CPA > ngưỡng.
+- Watchlist (bảng nhỏ): Top Platform có ROAS giảm > X% trong 14/30 ngày hoặc CPA > ngưỡng.
 
 ---
 
@@ -44,9 +44,11 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 *   **Mục tiêu:** So sánh hiệu quả giữa các kênh và loại nội dung để tối ưu hóa ngân sách.
 *   **Đối tượng sử dụng:** Đội ngũ Marketing (Marketing Team), Chuyên viên quảng cáo (Ad Specialists).
 *   **Câu hỏi trả lời:** "Nên đầu tư tiền vào đâu và dạng nội dung nào?"
-*   **Các chỉ số chính (KPIs):**
-    -   ROAS, CPA, CTR theo Nền tảng
-    -   ROAS, CPA, CTR theo Loại nội dung
+*   **Các chỉ số chính (KPIs) & chỉ số phụ:**
+    -   **Chỉ số hiệu quả chính:** ROAS, CPA
+    -   **Chỉ số tương tác & chi phí:** CTR, CPC (Chi phí mỗi lượt nhấp)
+    -   **Chỉ số chất lượng traffic:** Conversion Rate (Tỷ lệ chuyển đổi)
+    -   *Tất cả các chỉ số được phân tích theo Nền tảng và Loại nội dung.*
 
 **Biểu đồ đề xuất:**
 - Bar/boxplot: ROAS, CPA, CTR theo Platform (so sánh phân phối và median).
@@ -55,22 +57,51 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 - Pareto theo Platform/Content_Type: %Revenue đóng góp top-N.
 - Table: Top-N creatives/campaign theo ROAS/Revenue với số liệu hỗ trợ (Spend, Conversions).
 
+#### Bổ sung để toàn diện hóa:
+- **Metrics dẫn xuất mới:**
+  - **CPM (Cost per Mille):** \( \frac{Spend \times 1000}{Impressions} \) – Đo lường chi phí tiếp cận (awareness stage).
+  - **Funnel Drop-off Rate:** \( 1 - Conversion_Rate \) – Tỷ lệ mất mát từ Click → Conversion.
+  - **Content Engagement Score:** Weighted average of CTR + Conversion_Rate.
+  - **Attribution Share:** % Revenue attributed to each Platform/Content_Type.
+
+- **Visualizations mới:**
+  - **Sankey Diagram:** Flow từ Impressions → Clicks → Conversions theo Platform/Content_Type, với drop-off rates.
+  - **Heatmap Content × Platform:** ROAS/CPM/CTR với color gradient, filter bằng Duration.
+  - **A/B Testing Simulator:** Bảng so sánh Content_Type trên cùng Platform với statistical significance.
+
+- **Insights & Recommendations:** "Chuyển ngân sách từ Platform X (CPM cao, drop-off 40%) sang Y (ROAS >3x với Carousel)" – Tăng ROI 20-30% qua reallocation.
+
 ---
 
 ### Dashboard 3: Phân tích Chân dung Khách hàng (Customer Persona Analysis)
 *   **Mục tiêu:** Hiểu rõ khách hàng mục tiêu là ai và họ ở đâu.
 *   **Đối tượng sử dụng:** Trưởng phòng Marketing, Đội ngũ Sáng tạo Nội dung (Content Team), Chuyên viên quảng cáo.
 *   **Câu hỏi trả lời:** "Ai là khách hàng giá trị nhất của chúng ta?"
-*   **Các chỉ số chính (KPIs):**
-    -   Doanh thu, CPA theo Nhóm tuổi
-    -   Doanh thu, CPA theo Giới tính
-    -   Doanh thu, CPA theo Khu vực
+*   **Các chỉ số chính (KPIs) & chỉ số phụ:**
+    -   **Chỉ số giá trị:** Revenue, ROAS
+    -   **Chỉ số chi phí & hiệu quả:** CPA, Conversion Rate
+    -   **Chỉ số quy mô:** Conversions (Tổng số chuyển đổi)
+    -   *Tất cả các chỉ số được phân tích theo Nhóm tuổi, Giới tính, và Khu vực.*
 
 **Biểu đồ đề xuất:**
 - Heatmap: ROAS/CPA theo Age_Group x Gender (nhận diện persona hiệu quả).
 - Bar: Revenue và CPA theo Region (2 trục hoặc 2 chart song song).
 - Stacked bar: Revenue theo Age_Group trong từng Platform (interaction effect nếu cần).
 - Map/choropleth: Revenue/ROAS theo Region (nếu có mapping địa lý).
+
+#### Bổ sung để toàn diện hóa:
+- **Metrics dẫn xuất mới:**
+  - **Customer Lifetime Value (CLV) Proxy:** \( Revenue / Conversions \times Average Duration \).
+  - **RFM Segmentation:** Recency (từ Date), Frequency (Conversions per Campaign_ID), Monetary (Revenue per persona).
+  - **Persona Profitability:** Profit = Revenue - Spend, weighted by Conversion_Rate.
+  - **Cross-Segment Interaction:** ROAS theo Age × Gender × Region.
+
+- **Visualizations mới:**
+  - **Cohort Matrix:** Heatmap Retention/ROAS theo Date, group by Persona.
+  - **Persona Radar Chart:** So sánh personas trên ROAS, CPA, CLV, Conversion_Rate.
+  - **Treemap:** Hierarchy Region → Age_Group → Gender với size = Revenue, color = ROAS.
+
+- **Insights & Recommendations:** "Target Male 45-54 ở Asia với Video để tăng CLV 15%, dựa trên low churn rate" – Gợi ý personalization.
 
 ---
 
@@ -79,14 +110,29 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 *   **Đối tượng sử dụng:** Trưởng phòng Marketing, Chuyên viên Lập kế hoạch (Media Planners).
 *   **Câu hỏi trả lời:** "Chi tiêu bao nhiêu và trong bao lâu là tối ưu?"
 *   **Các chỉ số chính (KPIs):**
-    -   Tương quan giữa Ngân sách và Doanh thu
-    -   Tương quan giữa Thời gian chạy và ROAS
+    -   Tương quan giữa Chi tiêu thực tế (`Spend`) và Doanh thu (`Revenue`), ROAS.
+    -   Tương quan giữa Thời gian chạy (`Duration`) và Hiệu quả (`ROAS`, `CPA`).
+    -   Phân tích `Impressions` trong mối quan hệ với `Spend` để đánh giá chi phí hiển thị.
 
 **Biểu đồ đề xuất:**
 - Scatter: Budget/Spend vs Revenue (size = Conversions, color = ROAS) + đường fit (regression) để thấy trend.
 - Line/scatter: Duration (ngày chạy) vs ROAS; thêm LOESS/regression để quan sát hiệu ứng thời lượng.
 - Marginal/joint plot: phân phối Budget và Revenue kèm tương quan Pearson/Spearman.
 - Bubble timeline (optional): theo Campaign_ID, kích thước theo Spend, màu theo ROAS.
+
+#### Bổ sung để toàn diện hóa:
+- **Metrics dẫn xuất mới:**
+  - **Budget Pacing:** \( \frac{Spend}{Budget} \times 100\% \), Daily Spend = \( Spend / Duration \).
+  - **Forecasted ROAS:** Linear regression từ Spend/Duration/Date để dự báo.
+  - **Break-even Point:** Spend nơi ROAS =1.
+  - **Time Decay Attribution:** Weighted ROAS theo Date.
+
+- **Visualizations mới:**
+  - **Scenario Simulator:** Interactive scatter với sliders cho "What-if" analysis.
+  - **Time-Series Forecast:** Line chart ROAS/Revenue theo Date với forecast line.
+  - **Budget Allocation Pie:** % Budget vs % Revenue theo Platform/Duration buckets.
+
+- **Insights & Recommendations:** "Reallocate 15% từ Duration >20 days (ROAS decay 25%) sang short bursts để tăng ROI 10%" – Với risk assessment.
 
 ---
 

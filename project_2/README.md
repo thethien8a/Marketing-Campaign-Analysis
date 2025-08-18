@@ -21,15 +21,6 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 
 ### Dashboard 1: Tổng quan Hiệu suất (Performance Overview)
 *   **Mục tiêu:** Cung cấp cái nhìn 360 độ về sức khỏe của tất cả các chiến dịch.
-*   **Đối tượng sử dụng:** Ban lãnh đạo (C-Level), Trưởng phòng Marketing.
-*   **Câu hỏi trả lời:** "Tình hình marketing tổng thể đang như thế nào?"
-*   **Những thứ đối tượng sử dụng có thể quan tâm:**
-    -   **Hiệu quả tài chính:** Lợi nhuận ròng (Doanh thu - Chi phí) và ROAS (Return on Ad Spend) là bao nhiêu? Mỗi đồng chi ra mang về bao nhiêu đồng doanh thu?
-    -   **Xu hướng tăng trưởng:** Tình hình doanh thu, chi phí và hiệu quả (ROAS) đang tốt lên hay xấu đi theo thời gian?
-    -   **Cơ hội & Rủi ro:** Có kênh nào đang chiếm tỷ trọng quá lớn không? Đâu là cơ hội để tăng trưởng?
-*   **Các chỉ số chính (KPIs):**
-    -   Tổng Doanh thu, Tổng Chi phí, ROAS trung bình
-    -   Tổng Chuyển đổi, CPA trung bình
 
 **Biểu đồ đề xuất (impact cao):**
 - KPI Cards: Total Revenue, Total Spend, Avg ROAS, Total Conversions, Avg CPA (+ % thay đổi MoM/7 ngày).
@@ -67,9 +58,11 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 - **Visualizations mới:**
   - **Sankey Diagram:** Flow từ Impressions → Clicks → Conversions theo Platform/Content_Type, với drop-off rates.
   - **Heatmap Content × Platform:** ROAS/CPM/CTR với color gradient, filter bằng Duration.
-  - **A/B Testing Simulator:** Bảng so sánh Content_Type trên cùng Platform với statistical significance.
+  - **A/B Testing Simulator:** Bảng so sánh Content_Type trên cùng Platform với statistical significance (t-test trên ROAS/CPA).
 
-- **Insights & Recommendations:** "Chuyển ngân sách từ Platform X (CPM cao, drop-off 40%) sang Y (ROAS >3x với Carousel)" – Tăng ROI 20-30% qua reallocation.
+- **Insights & Recommendations:** 
+  - Phân tích funnel để xác định "leak" (e.g., high drop-off ở CTR cho Text content).
+  - Gợi ý reallocation: "Chuyển ngân sách từ Platform X (CPM cao, drop-off 40%) sang Y (ROAS >3x với Carousel)" – Tăng ROI 20-30% qua optimization dựa trên attribution.
 
 ---
 
@@ -91,17 +84,19 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 
 #### Bổ sung để toàn diện hóa:
 - **Metrics dẫn xuất mới:**
-  - **Customer Lifetime Value (CLV) Proxy:** \( Revenue / Conversions \times Average Duration \).
-  - **RFM Segmentation:** Recency (từ Date), Frequency (Conversions per Campaign_ID), Monetary (Revenue per persona).
+  - **Customer Lifetime Value (CLV) Proxy:** \( \frac{Revenue}{Conversions} \times Average Duration \).
+  - **RFM Segmentation:** Recency (từ Date), Frequency (Conversions per Campaign_ID), Monetary (Revenue per persona) – Phân loại "High-Value", "At-Risk", "New".
   - **Persona Profitability:** Profit = Revenue - Spend, weighted by Conversion_Rate.
   - **Cross-Segment Interaction:** ROAS theo Age × Gender × Region.
 
 - **Visualizations mới:**
-  - **Cohort Matrix:** Heatmap Retention/ROAS theo Date, group by Persona.
-  - **Persona Radar Chart:** So sánh personas trên ROAS, CPA, CLV, Conversion_Rate.
-  - **Treemap:** Hierarchy Region → Age_Group → Gender với size = Revenue, color = ROAS.
+  - **Cohort Matrix:** Heatmap Retention/ROAS theo Date, group by Persona (Age/Gender/Region).
+  - **Persona Radar Chart:** So sánh multiple personas trên metrics (ROAS, CPA, CLV, Conversion_Rate).
+  - **Treemap:** Hierarchy Region → Age_Group → Gender với size = Revenue, color = ROAS, filter bằng Platform.
 
-- **Insights & Recommendations:** "Target Male 45-54 ở Asia với Video để tăng CLV 15%, dựa trên low churn rate" – Gợi ý personalization.
+- **Insights & Recommendations:** 
+  - Sử dụng RFM để segment và predict churn.
+  - Gợi ý targeting: "Target Male 45-54 ở Asia với Video để tăng CLV 15%, dựa trên low churn rate" – Kèm personalization ideas (e.g., ad copy tailored by gender/age).
 
 ---
 
@@ -122,17 +117,19 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 
 #### Bổ sung để toàn diện hóa:
 - **Metrics dẫn xuất mới:**
-  - **Budget Pacing:** \( \frac{Spend}{Budget} \times 100\% \), Daily Spend = \( Spend / Duration \).
-  - **Forecasted ROAS:** Linear regression từ Spend/Duration/Date để dự báo.
-  - **Break-even Point:** Spend nơi ROAS =1.
-  - **Time Decay Attribution:** Weighted ROAS theo Date.
+  - **Budget Pacing:** \( \frac{Spend}{Budget} \times 100\% \), Daily Spend = \( \frac{Spend}{Duration} \).
+  - **Forecasted ROAS:** Linear regression từ Spend/Duration/Date để dự báo Revenue/ROAS.
+  - **Break-even Point:** Spend level nơi ROAS =1 (Profit=0).
+  - **Time Decay Attribution:** Weighted ROAS theo Date (recent days trọng số cao hơn).
 
 - **Visualizations mới:**
-  - **Scenario Simulator:** Interactive scatter với sliders cho "What-if" analysis.
-  - **Time-Series Forecast:** Line chart ROAS/Revenue theo Date với forecast line.
-  - **Budget Allocation Pie:** % Budget vs % Revenue theo Platform/Duration buckets.
+  - **Scenario Simulator:** Interactive scatter với sliders cho "What-if" (e.g., tăng Budget 20% → forecasted Revenue).
+  - **Time-Series Forecast:** Line chart ROAS/Revenue theo Date, với ARIMA forecast line và anomaly detection.
+  - **Budget Allocation Pie:** % Budget vs % Revenue theo Platform/Duration buckets, với break-even lines.
 
-- **Insights & Recommendations:** "Reallocate 15% từ Duration >20 days (ROAS decay 25%) sang short bursts để tăng ROI 10%" – Với risk assessment.
+- **Insights & Recommendations:** 
+  - Forecasting để hỗ trợ media planning.
+  - Gợi ý allocation: "Reallocate 15% từ campaigns Duration >20 days (ROAS decay 25%) sang short bursts để tăng ROI 10%" – Kèm risk assessment (e.g., volatility từ low sample size).
 
 ---
 

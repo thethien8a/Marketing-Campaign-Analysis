@@ -32,158 +32,213 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 ---
 
 ### Dashboard 2: Phân tích Kênh & Nội dung (Channel & Content Deep Dive)
-*   **Mục tiêu:** So sánh hiệu quả giữa các kênh và loại nội dung để tối ưu hóa ngân sách.
-*   **Đối tượng sử dụng:** Đội ngũ Marketing (Marketing Team), Chuyên viên quảng cáo (Ad Specialists).
-*   **Câu hỏi trả lời:** "Nên đầu tư tiền vào đâu và dạng nội dung nào?"
+**Objective:** So sánh hiệu quả giữa các kênh (Platform) và loại nội dung (Content_Type) để tối ưu phân bổ ngân sách & sáng tạo.
 
-#### 📊 KPI CARDS (Luôn đặt ở đầu dashboard):
-- **Total Revenue by Channel** (với % change vs previous period)
-- **Average ROAS by Platform** (với trend indicator ↗️↘️)
-- **Best Performing Content Type** (ROAS cao nhất + volume)
-- **Channel Efficiency Score** (weighted ROAS × Volume)
-- **Content Engagement Rate** (CTR × Conversion Rate combined)
+**Primary Users:** Marketing Team, Ad Specialists.
 
-#### 🎯 BIỂU ĐỒ QUAN TRỌNG NHẤT (Ấn tượng với nhà tuyển dụng):
+**Key Business Questions:**
+1. Kênh + loại nội dung nào mang lại ROAS cao và CPM thấp nhất (sweet spot)?
+2. Nên scale ngân sách ở đâu và giảm ở đâu (hiệu quả thấp / chi phí cao)?
+3. Funnel bị rò rỉ ở giai đoạn nào theo từng platform?
+4. Yếu tố nào kéo ROAS: giá trị trên mỗi conversion, conversion rate hay cost efficiency?
 
-**1. Performance Matrix Heatmap** (⭐⭐⭐⭐⭐)
-- **Mục đích:** So sánh ROAS và CPM theo Platform × Content_Type
-- **Tại sao quan trọng:** Một cái nhìn duy nhất cho thấy "sweet spot" (kênh + nội dung hiệu quả nhất)
-- **Ấn tượng với NTD:** Thể hiện khả năng tổng hợp complex data thành actionable insights
-- **Code:** Heatmap với Platform (rows) × Content_Type (cols), color = ROAS, annotation = CPM values
+**Priority Legend:**
+- P1 (⭐⭐⭐⭐⭐) = Critical driver / phải xây trước
+- P2 (⭐⭐⭐⭐) = High impact / triển khai sau P1
+- P3 (⭐⭐⭐) = Support / bổ sung chiều sâu
 
-**2. Channel Efficiency Bubble Chart** (⭐⭐⭐⭐⭐)
-- **Mục đích:** x = Spend, y = ROAS, size = Revenue, color = Platform
-- **Tại sao quan trọng:** Định vị kênh nào "đáng đồng tiền bát gạo" và scale được
-- **Ấn tượng với NTD:** Hiểu portfolio management và risk-return trong marketing
-- **Code:** Scatter với quadrant lines (ROAS = avg, Spend = median) để phân vùng
+#### 📊 KPI Layer (Top Cards)
+| KPI | Mục đích | Định nghĩa ngắn | So sánh |
+| --- | --- | --- | --- |
+| Total Revenue by Channel | Quy mô giá trị | Sum(Revenue) group Platform | vs prev period (%) |
+| Avg ROAS by Platform | Hiệu quả tổng hợp | Revenue / Spend (weighted) | trend (7d / 30d) |
+| Best Performing Content Type | Creative hiệu quả | Max ROAS (Content_Type) + Volume | rank change |
+| Channel Efficiency Score | Ưu tiên ngân sách | Weighted_ROAS = Σ(ROAS_i*Spend_i)/Σ(Spend_i) | vs overall |
+| Content Engagement Rate | Chất lượng traffic | CTR * Conversion_Rate | vs median |
 
-**3. Marketing Funnel Sankey** (⭐⭐⭐⭐)
-- **Mục đích:** Flow Impressions → Clicks → Conversions theo Platform
-- **Tại sao quan trọng:** Thấy "leak" ở đâu trong customer journey
-- **Ấn tượng với NTD:** Hiểu full-funnel marketing, không chỉ bottom-line metrics
-- **Code:** Sankey với drop-off rates annotated, filter theo Content_Type
+#### 🎯 Key Visuals (with Data Needs, Insight, Action)
 
-**4. ROI Decomposition Tree** (⭐⭐⭐⭐)
-- **Mục đích:** ROAS = (Revenue/Conversions) × (Conversions/Clicks) × (Clicks/Spend)
-- **Tại sao quan trọng:** Hiểu driver nào kéo ROAS (value per conversion vs conversion rate vs cost efficiency)
-- **Ấn tượng với NTD:** Advanced analytics thinking - decompose metrics để optimize từng lever
-- **Code:** Waterfall chart hoặc nested bar chart theo Platform
+**P1. Performance Matrix Heatmap (Platform × Content_Type)**
+- Data Needs: Platform, Content_Type, Spend, Revenue, Impressions
+- Metrics: ROAS, CPM = Spend / (Impressions/1000)
+- Expected Insight: Nhận diện cluster High ROAS + Low CPM → ưu tiên scale
+- Action Rule: Nếu ROAS > (median + 1 SD) & CPM < median ⇒ tăng ngân sách 10–25%
+- Visualization: Heatmap color=ROAS (diverging), annotation=CPM (k format), optional tooltip Spend, Revenue
 
-**5. Content Performance Leaderboard** (⭐⭐⭐)
-- **Mục đích:** Top 10 campaigns theo ROAS với supporting metrics (Spend, Revenue, Duration)
-- **Tại sao quan trọng:** Marketers cần biết creative nào work để replicate
-- **Ấn tượng với NTD:** Business-focused presentation
-- **Code:** Interactive table với conditional formatting và drill-down
+**P1. Channel Efficiency Bubble Chart**
+- Data Needs: Platform, Spend, Revenue, Conversions (optional for CPA), ROAS
+- Axes: x=Spend, y=ROAS, size=Revenue, color=Platform
+- Insight: Phân loại 4 vùng: High Spend/Low ROAS (Optimize), Low Spend/High ROAS (Scale), High/High (Monitor), Low/Low (Deprioritize)
+- Action Rule: Low Spend/High ROAS ⇒ Test tăng ngân sách theo bậc 10% → 20% → 30%
+- Overlay: Lines: Spend=median, ROAS=avg
 
-#### 💡 Key Metrics để tính:
-- **ROAS, CPA, CTR, CPM** (cơ bản)
-- **Revenue per Click = Revenue/Clicks** (advanced)
-- **Funnel Drop-off Rate = 1 - Conversion_Rate** (advanced)
-- **Platform Share of Voice = Impressions_platform / Total_Impressions** (strategic)
+**P2. Marketing Funnel Sankey**
+- Data Needs: Platform, Impressions, Clicks, Conversions
+- Derived: CTR = Clicks/Impressions; Conversion_Rate = Conversions/Clicks; Drop-off stages
+- Insight: Stage với drop-off > (median + 15pp) cần tối ưu (creative, landing, offer)
+- Action Rule: Nếu CTR thấp (<pct threshold) nhưng Conversion_Rate cao ⇒ cần cải thiện creative/ad copy; ngược lại xem xét UX landing page
+
+**P2. ROI Decomposition Tree**
+- Identity: ROAS = (Revenue/Conversions) × (Conversions/Clicks) × (Clicks/Spend)
+- Labels: Value_per_Conversion, Conversion_Rate, Click_Through_Efficiency
+- Insight: Segment yếu nhất → ưu tiên A/B test tương ứng
+- Action Rule: Driver thấp hơn 20% so với median driver toàn bộ ⇒ tạo backlog tối ưu riêng
+
+**P3. Content Performance Leaderboard**
+- Data Needs: Campaign_ID, Content_Type, Platform, Spend, Revenue, Duration, Conversions
+- Columns: ROAS, Spend, Revenue, CPA, Duration, Opportunity_Score (see metric dictionary)
+- Insight: Xếp hạng top creative để replicate hoặc scale
+- Action Rule: Campaign có Opportunity_Score top quintile nhưng Spend dưới median ⇒ cân nhắc increase spend
+
+#### Supporting Computations
+- Revenue per Click = Revenue/Clicks
+- Funnel Drop-off Rate = 1 - Conversion_Rate
+- Platform Share of Voice = Impressions_platform / Total_Impressions
+
+#### Data Quality / Feasibility Notes
+- Cần đảm bảo không chia cho 0 (Spend=0, Clicks=0, Impressions=0)
+- Chuẩn hoá rolling windows: 7d & 30d
+- Outlier spend (> Q3 + 1.5*IQR) có thể distort median line scatter → cân nhắc winsorize
+
+#### Action Playbook (Examples)
+| Tình huống | Diễn giải | Hành động đề xuất |
+|------------|-----------|-------------------|
+| High ROAS + Low Spend | Cơ hội scale | Tăng ngân sách từng bước 10–20% và theo dõi ROAS giữ > 90% baseline |
+| Low ROAS + High Spend | Lãng phí | Freeze incremental spend, audit creative & targeting |
+| High CTR, Low Conversion_Rate | Landing issue | Kiểm tra tốc độ trang, form friction, message mismatch |
+| Low CTR, High Conversion_Rate | Ad hook yếu | Tối ưu creative, headline, audience relevance |
+
+---
 
 ---
 
 ### Dashboard 3: Phân tích Chân dung Khách hàng (Customer Persona Analysis)
-*   **Mục tiêu:** Hiểu rõ khách hàng mục tiêu là ai và họ ở đâu.
-*   **Đối tượng sử dụng:** Trưởng phòng Marketing, Đội ngũ Sáng tạo Nội dung (Content Team), Chuyên viên quảng cáo.
-*   **Câu hỏi trả lời:** "Ai là khách hàng giá trị nhất của chúng ta?"
+**Objective:** Xác định phân khúc khách hàng có giá trị & hiệu quả cao nhất để tối ưu targeting và ngân sách.
 
-#### 📊 KPI CARDS (Luôn đặt ở đầu dashboard):
-- **Highest Value Persona** (Age×Gender với CLV cao nhất)
-- **Most Profitable Region** (Revenue - Spend, với growth rate)
-- **Customer Acquisition Cost by Segment** (CPA trung bình theo persona)
-- **Geographic Revenue Distribution** (Top 3 regions % contribution)
-- **Persona Conversion Efficiency** (Best performing Age×Gender combo)
+**Primary Users:** Marketing Manager, Content Team, Ad Optimization.
 
-#### 🎯 BIỂU ĐỒ QUAN TRỌNG NHẤT (Ấn tượng với nhà tuyển dụng):
+**Key Business Questions:**
+1. Persona (Age × Gender × Region) nào tạo nhiều giá trị / lợi nhuận nhất?
+2. Chênh lệch hiệu suất giữa các vùng địa lý ảnh hưởng ngân sách thế nào?
+3. Có persona nào đang under-invested (ROAS cao nhưng share thấp)?
+4. Retention / giá trị dài hạn thay đổi thế nào theo cohort thời gian bắt đầu?
 
-**1. Customer Value Matrix** (⭐⭐⭐⭐⭐)
-- **Mục đích:** Heatmap ROAS theo Age_Group × Gender, với bubble size = Revenue
-- **Tại sao quan trọng:** Identify "golden personas" - segment có ROI cao nhất
-- **Ấn tượng với NTD:** Hiểu customer segmentation và value-based targeting
-- **Code:** Heatmap với annotation số liệu Revenue, filter theo Region/Platform
+#### 📊 KPI Layer
+| KPI | Purpose | Definition | Comparison |
+|-----|---------|------------|------------|
+| Highest Value Persona | Focus segment | Max CLV persona | vs #2 difference |
+| Most Profitable Region | Geo allocation | (Revenue - Spend) by Region | QoQ / MoM |
+| Avg CPA by Persona | Efficiency | Spend / Conversions | vs overall CPA |
+| Geographic Revenue Distribution | Concentration | Top 3 Regions % Revenue | 80/20 ratio |
+| Persona Conversion Efficiency | Funnel quality | Conversion_Rate * ROAS (normalized) | vs median |
 
-**2. Geographic Revenue Map** (⭐⭐⭐⭐⭐)
-- **Mục đích:** Choropleth map Revenue theo Region, với overlay CPA bubbles
-- **Tại sao quan trọng:** Geo-targeting strategy - biết đầu tư vào market nào
-- **Ấn tượng với NTD:** Spatial analytics và international marketing thinking
-- **Code:** Map với color scale = Revenue, bubble size = Total Spend, hover = ROAS
+#### Key Visuals
+**P1. Customer Value Matrix (Heatmap)**
+- Data Needs: Age_Group (Target_Age), Target_Gender, Revenue, Spend, Conversions
+- Metrics: ROAS, Revenue share
+- Insight: Identify \"golden personas\"
+- Action: Persona ROAS > (overall + 15%) nhưng Spend share < 0.5 * Revenue share ⇒ tăng phân bổ
 
-**3. Persona Profitability Radar** (⭐⭐⭐⭐)
-- **Mục đích:** So sánh Top 5 personas trên 6 metrics: ROAS, Revenue, CLV, Conversion Rate, Volume, Efficiency
-- **Tại sao quan trọng:** Multi-dimensional comparison để chọn target persona
-- **Ấn tượng với NTD:** Advanced visualization và holistic thinking
-- **Code:** Radar chart với personas khác màu, metrics normalized 0-10
+**P1. Geographic Revenue Map**
+- Data Needs: Region, Revenue, Spend, Conversions
+- Overlay: Bubble size = Spend, color = Revenue, hover = ROAS & CPA
+- Action: Region CPA > (overall + 20%) và ROAS < 0.9 * overall ⇒ audit targeting
 
-**4. Customer Journey Cohort** (⭐⭐⭐⭐)
-- **Mục đích:** Heatmap retention ROAS theo Date × Persona, thấy persona nào "bền"
-- **Tại sao quan trọng:** Hiểu lifetime value và churn patterns
-- **Ấn tượng với NTD:** Cohort analysis - advanced marketing analytics skill
-- **Code:** Cohort table với color gradient, group by Age/Gender
+**P2. Persona Profitability Radar**
+- Data Needs: Top 5 personas (theo CLV)
+- Metrics (normalized 0–10): ROAS, Revenue, CLV, Conversion_Rate, Volume (Conversions), Efficiency_Score
+- Insight: Persona với trục yếu nhất xác định điểm cải thiện rõ ràng
 
-**5. Persona Performance Leaderboard** (⭐⭐⭐)
-- **Mục đích:** Top 10 Age×Gender×Region combinations theo CLV
-- **Tại sao quan trọng:** Actionable list để focus marketing efforts
-- **Ấn tượng với NTD:** Business-ready recommendations
-- **Code:** Table với CLV, Revenue, CPA, Volume, và "Opportunity Score"
+**P2. Customer Journey Cohort**
+- Cohort Definition: Week of first conversion
+- Metric: Cumulative ROAS / Retention (% conversions continuing)
+- Action: Nếu Cohort tuần gần đây retention giảm >10pp so với median 8 tuần ⇒ xem xét fatigue / creative refresh
 
-#### 💡 Key Metrics để tính:
-- **Customer Lifetime Value (CLV) = (Revenue/Conversions) × Average Duration**
-- **Persona Profitability = Revenue - Spend** (per segment)
-- **Market Penetration = Conversions_segment / Total_Conversions** (% share)
-- **Efficiency Score = ROAS × Conversion_Rate** (combined effectiveness)
+**P3. Persona Performance Leaderboard**
+- Data Needs: Age × Gender × Region
+- Columns: CLV, ROAS, CPA, Revenue, Spend, Opportunity_Score
+- Opportunity_Score: (ROAS_index * Revenue_share_index) / Investment_share_index
+
+#### Supporting Metrics
+- CLV (simple proxy) = (Revenue / Conversions) * Average Duration (nếu Duration đại diện lifetime) OR mark as proxy
+- Persona Profitability = Revenue - Spend
+- Market Penetration = Conversions_segment / Total_Conversions
+- Efficiency Score = ROAS * Conversion_Rate
+
+#### Action Playbook (Examples)
+| Situation | Indicator | Suggested Action |
+|----------|-----------|------------------|
+| High CLV, Low Spend Share | Spend Share < 0.5 * Revenue Share | Reallocate + incremental budget tests |
+| High CPA, Normal CTR | CPA > 120% overall; CTR within 5% range | Optimize mid-funnel (landing, offer) |
+| Low CTR, High Conversion_Rate | CTR < p25; Conversion_Rate > p75 | Creative & audience A/B test |
+| Declining Retention Cohorts | Retention Week2 drop >10pp | Lifecycle nurture refinement |
+
+---
 
 ---
 
 ### Dashboard 4: Phân tích Ngân sách & Thời gian (Budget & Duration Analysis)
-*   **Mục tiêu:** Đánh giá mối quan hệ giữa chi tiêu, thời gian và hiệu quả.
-*   **Đối tượng sử dụng:** Trưởng phòng Marketing, Chuyên viên Lập kế hoạch (Media Planners).
-*   **Câu hỏi trả lời:** "Chi tiêu bao nhiêu và trong bao lâu là tối ưu?"
+**Objective:** Xác định mức chi & độ dài chiến dịch tối ưu để đạt ROI cao và tránh diminishing returns.
 
-#### 📊 KPI CARDS (Luôn đặt ở đầu dashboard):
-- **Total Marketing Spend** (vs Budget, với pacing %)
-- **Average Campaign Duration** (optimal vs actual, với efficiency score)
-- **Break-even Spend Threshold** (ROAS = 1 point)
-- **Budget Utilization Rate** (Spend/Budget across all campaigns)
-- **ROI Forecast Next Period** (dựa trên current trends)
+**Primary Users:** Marketing Manager, Media Planners, Finance Liaison.
 
-#### 🎯 BIỂU ĐỒ QUAN TRỌNG NHẤT (Ấn tượng với nhà tuyển dụng):
+**Key Business Questions:**
+1. Ngân sách hiện tại được phân bổ có cân đối hiệu suất không?
+2. Điểm hòa vốn (ROAS=1) và khu vực diminishing returns xuất hiện ở đâu?
+3. Chiến dịch dài hơn có cải thiện hay làm xấu hiệu quả?
+4. Dự báo ROI nếu điều chỉnh ngân sách / thời lượng?
 
-**1. ROI vs Investment Scatter** (⭐⭐⭐⭐⭐)
-- **Mục đích:** x = Spend, y = ROAS, size = Revenue, color = Platform, với regression line
-- **Tại sao quan trọng:** Thấy "sweet spot" của investment - không phải càng chi nhiều càng tốt
-- **Ấn tượng với NTD:** Hiểu diminishing returns và portfolio optimization
-- **Code:** Scatter với quadrants (High Spend/High ROAS, etc.), annotation break-even line
+#### 📊 KPI Layer
+| KPI | Purpose | Definition | Comparison |
+|-----|---------|------------|------------|
+| Total Marketing Spend | Tổng mức đầu tư | Sum(Spend) | vs Budget target |
+| Budget Utilization Rate | Pacing | Spend / Budget | pacing % vs plan |
+| Average Campaign Duration | Chiều dài trung bình | Mean(Duration) | vs optimal band |
+| Break-even Spend Threshold | Rủi ro lỗ | Spend level where ROAS=1 | track trend |
+| ROI Forecast Next Period | Kỳ vọng | Model-based projected ROAS | vs current |
 
-**2. Campaign Duration Efficiency** (⭐⭐⭐⭐⭐)
-- **Mục đích:** Line chart ROAS vs Duration với trend line, group by Platform
-- **Tại sao quan trọng:** Timing strategy - campaigns dài có hiệu quả hơn không?
-- **Ấn tượng với NTD:** Media planning expertise và temporal optimization
-- **Code:** Multi-line với confidence intervals, annotation optimal duration ranges
+#### Key Visuals
+**P1. ROI vs Investment Scatter**
+- Data Needs: Campaign_ID, Spend, Revenue, Platform
+- Add regression (log or piecewise) để thấy diminishing returns
+- Quadrants: Annotate counts & Spend share
+- Action: Campaign ở High Spend / Low ROAS ⇒ review or cut 10–30%
 
-**3. Budget Allocation Treemap** (⭐⭐⭐⭐)
-- **Mục đích:** Hierarchy Platform → Content_Type, size = Spend, color = ROAS
-- **Tại sao quan trọng:** Portfolio view - thấy ngân sách phân bổ và hiệu quả tương ứng
-- **Ấn tượng với NTD:** Strategic thinking và resource allocation
-- **Code:** Treemap với hover showing ROI, Profit, và recommendations
+**P1. Campaign Duration Efficiency (Line / Spline)**
+- Data Needs: Duration, ROAS, Platform
+- Add smoothing + confidence interval
+- Insight: Optimal duration range (plateau zone)
+- Action: Nếu Duration > optimal_high & ROAS giảm >10% từ peak ⇒ sunset candidate
 
-**4. Pacing & Performance Dashboard** (⭐⭐⭐⭐)
-- **Mục đích:** Gauge charts cho Budget Utilization, với alert zones (under/over-paced)
-- **Tại sao quan trọng:** Real-time campaign management - biết khi nào cần adjust
-- **Ấn tượng với NTD:** Operational excellence và monitoring skills
-- **Code:** Multiple gauges với color zones, table campaigns cần attention
+**P2. Budget Allocation Treemap**
+- Hierarchy: Platform → Content_Type
+- Size=Spend, Color=ROAS (diverging with neutral at ROAS=1)
+- Action: Mảng Spend >15% tổng nhưng ROAS < 0.9 overall ⇒ reallocate thử 5–10%
 
-**5. Forecast & Scenario Planner** (⭐⭐⭐⭐⭐)
-- **Mục đích:** Interactive sliders để forecast Revenue nếu thay đổi Budget/Duration
-- **Tại sao quan trọng:** Predictive analytics cho planning - "What if we spend X more?"
-- **Ấn tượng với NTD:** Advanced analytics và business planning capability
-- **Code:** Plotly với callbacks, regression model để predict, sensitivity analysis
+**P2. Pacing & Performance Gauges**
+- Metrics: Budget Utilization %, Forecast vs Plan %, Underspend/ Overspend flags
+- Action: Pacing < 90% mid-period ⇒ accelerate spend / add campaigns
 
-#### 💡 Key Metrics để tính:
-- **Budget Pacing = (Spend/Budget) × 100%** (campaign health)
-- **Daily Efficiency = Revenue/Duration** (time-normalized performance)  
-- **Break-even Spend = Budget where ROAS = 1** (risk threshold)
-- **ROI Elasticity = % change ROAS / % change Spend** (sensitivity)
+**P1. Forecast & Scenario Planner**
+- Model: Simple ElasticNet or Gradient Boosting using Spend, Duration, Platform, Content_Type dummies
+- Interactive: Sliders ± X% Budget; output projected Revenue, ROAS
+- Action: Chỉ commit scale nếu projected ROAS giữ > 95% hiện tại
+
+#### Supporting Metrics
+- Budget Pacing = Spend / Budget
+- Daily Efficiency = Revenue / Duration
+- Break-even Spend: Solve Spend where ROAS = 1 (or find nearest actual)
+- ROI Elasticity = %ΔROAS / %ΔSpend (rolling window)
+
+#### Action Playbook
+| Scenario | Indicator | Action |
+|----------|-----------|--------|
+| Overspend & Underperform | Pacing >105%, ROAS <0.9 target | Freeze marginal spend, audit cost drivers |
+| Underspend & High Efficiency | Pacing <90%, ROAS >1.15 target | Controlled scale sequence (add +10% cycles) |
+| Long Tail Inefficient | Campaign age > optimal & ROAS decay | Sunset or refresh creative |
+| Sharp Elasticity Decline | Elasticity <0 after scale | Stop scaling; test new segments |
+
+---
 
 ---
 
@@ -239,3 +294,48 @@ Dưới đây là kế hoạch chi tiết cho từng dashboard sẽ được xâ
 - **ROAS** — float: Hiệu quả chi tiêu quảng cáo = Revenue / Spend.
 - **Date** — date (YYYY-MM-DD): Ngày ghi nhận dữ liệu/chạy chiến dịch.
 - **Impressions** — integer: Số lần hiển thị.
+ 
+### Trường dẫn xuất (Derived Fields)
+- **ROAS** (nếu không có sẵn) = Revenue / Spend
+- **CPA** (nếu cần tái tính) = Spend / Conversions
+- **CTR** = Clicks / Impressions
+- **Conversion_Rate** = Conversions / Clicks
+- **CPM** = Spend / (Impressions/1000)
+- **Revenue_per_Click** = Revenue / Clicks
+- **Drop_Off_Clicks** = 1 - CTR (biểu diễn tỷ lệ bỏ qua sau impression)
+- **Drop_Off_Conversion** = 1 - Conversion_Rate
+- **Weighted_ROAS (Channel Efficiency)** = Σ(ROAS_i * Spend_i)/Σ(Spend_i)
+- **Opportunity_Score** (leaderboard) = (ROAS_index * Revenue_share_index) / Spend_share_index (chuẩn hoá indices quanh 1)
+- **Efficiency_Score** = ROAS * Conversion_Rate (scale/normalize để so sánh)
+- **CLV (proxy)** = (Revenue / Conversions) * Average Duration (hoặc giả định 1 chu kỳ nếu thiếu)
+
+### Data Gaps & Assumptions
+| Yếu tố | Trạng thái | Giả định / Hành động |
+|--------|-----------|----------------------|
+| Age / Gender / Region | Cần kiểm tra đủ độ phủ | Nếu thiếu nhiều (>30%) ⇒ hạn chế Persona dashboard hoặc tạo bucket "Unknown" |
+| Budget (kế hoạch) | Có thể khác Spend | Nếu không có cột Budget ⇒ tạo giả định = historical avg Spend * factor |
+| Duration | Nếu chỉ có Start/End | Tính Duration = (End - Start).days + 1 |
+| Impressions outliers | Có thể skew CTR | Winsorize p1–p99 hoặc log-scale trong phân tích |
+| Revenue attribution lag | Delay ghi nhận | Ghi chú độ trễ nếu forecasting ngắn hạn |
+| Missing Spend=0 & Revenue>0 | Có khả năng attribution khác kênh | Flag validation trước khi tính ROAS |
+
+### Metric Dictionary (Consolidated)
+| Metric | Formula | Notes |
+|--------|---------|-------|
+| ROAS | Revenue / Spend | Guard: Spend>0 |
+| CPA | Spend / Conversions | Guard: Conversions>0 |
+| CTR | Clicks / Impressions | Guard: Impressions>0 |
+| Conversion_Rate | Conversions / Clicks | Guard: Clicks>0 |
+| CPM | Spend / (Impressions/1000) | Rounded to 2 decimals |
+| Revenue_per_Click | Revenue / Clicks | Performance value proxy |
+| Funnel Drop-off Rate | 1 - Conversion_Rate | Stage efficiency |
+| Share of Voice | Impressions_platform / Total_Impressions | Platform mix |
+| Weighted_ROAS | Σ(ROAS_i * Spend_i)/Σ Spend_i | Spend-weighted effectiveness |
+| Efficiency_Score | ROAS * Conversion_Rate | Normalize 0–1 or 0–10 |
+| Opportunity_Score | (ROAS_idx * Revenue_share_idx)/Spend_share_idx | idx = metric / overall |
+| Budget Pacing | Spend / Budget | Track vs plan |
+| Daily Efficiency | Revenue / Duration | Time-normalized |
+| ROI Elasticity | %ΔROAS / %ΔSpend | Rolling window (e.g. 14d) |
+| CLV (proxy) | (Revenue / Conversions) * Avg Duration | Simplified estimate |
+
+---
